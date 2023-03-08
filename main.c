@@ -1,17 +1,17 @@
 #include "get_next_line.h"
 
 /*
-/* gcc -Wall -Werror -Wextra -D BUFFER_SIZE=10 main.c get_next_line.h get_next_line.c
+* gcc -Wall -Werror -Wextra -D BUFFER_SIZE=10 main.c get_next_line.h get_next_line.c
 */
 
 int main(void)
 {
-	FILE *fd;
-	char *s;
+	int		fd;
+	char	*s;
 
-	fd = fopen("file.txt", "r");
+	fd = open("file.txt", O_RDONLY);
 
-	if (fd != NULL) {
+	if (fd != 0) {
 		printf("Opened file succesfully\n");
 	}
 

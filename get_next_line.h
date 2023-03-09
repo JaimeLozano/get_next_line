@@ -6,7 +6,7 @@
 /*   By: jlozano- <jlozano-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:13:07 by jlozano-          #+#    #+#             */
-/*   Updated: 2023/03/09 19:05:50 by jlozano-         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:50:15 by jlozano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,5 @@
 
 
 char *get_next_line(int fd);
+char	*ft_strjoin(char *left_str, char *buff);
+size_t	ft_strlen(char *s);

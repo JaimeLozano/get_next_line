@@ -6,7 +6,7 @@
 /*   By: jlozano- <jlozano-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:13:07 by jlozano-          #+#    #+#             */
-/*   Updated: 2023/03/08 20:20:46 by jlozano-         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:05:50 by jlozano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 #define BUFFER_SIZE 10
 #endif
 
-#include "get_next_line_utils.c"
-#include <fcntl.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <fcntl.h>
+#include <unistd.h>
 
 
 char *get_next_line(int fd);

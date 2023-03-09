@@ -6,30 +6,36 @@
 /*   By: jlozano- <jlozano-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:12:29 by jlozano-          #+#    #+#             */
-/*   Updated: 2023/03/08 20:19:14 by jlozano-         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:39:10 by jlozano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+
+
 char	*get_next_line(int	fd)
 {
 	char	cRead;
-	char	*sWrite;
+	char	*sOut;
 	int		i;
-	int		ret;
 	
-	
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
 
-	sWrite = (char *)malloc(BUFFER_SIZE * sizeof(char));
-
+	sOut = (char *)malloc(BUFFER_SIZE * sizeof(char));
+	if (!sOut)
+		return (0);
 	i = 0;
-	ret = ft_read(fd, &cRead, 1);
-	while ((cRead != '\n') && i < BUFFER_SIZE)
+	while (i < BUFFER_SIZE)
 	{
-		*sWrite++ = cRead;
-		i++;
-		read(fd, &cRead, 1);
+		read(fd, &sOut[i], 1);
+		if (sOut[i] == '\n')
+			return sOut;
+		else
+			i++;
 	}
-	return (sWrite);
+	if (i == BUFFER_SIZE)
+		get_next_line()
+	return (sOut);
 }

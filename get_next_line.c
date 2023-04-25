@@ -12,54 +12,28 @@
 
 #include "get_next_line.h"
 
-void	get_sShort(int	fd, char *sShort, int iBufferSize)
-{
-	int			i;
-	
-	read(fd, &sShort[i], BUFFER_SIZE);
-	while (sShort[i] != '\n')
-	{
-		read(fd, &sShort[i], 1);
-		if (sShort[i] == '\n')
-			break;
-		else
-			i++;
-	}
-	
-}
-
-void	append_sShort2sLong(char *sShort, char *sLong)
-{
-	sLong = 
-}
-
 char	*get_next_line(int	fd)
 {
-	static char	*sShort;
-	char		*sLong;
-	int			rd_bytes;
+	static tBuffer	*buffer;
+	char		*line;
 	static int	iBufferSize;
+	int			ret;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	
 	iBufferSize = BUFFER_SIZE;
-	
-	while (1)
+	ret = 0;
+	while (ret == 0)
 	{
-		get_sShort(fd, sShort, iBufferSize);
-		if (sShort[ft_strlen(sShort) - 1] == '\n')
-			break;
-		append_sShort2sLong(sShort, sLong);
-		ft_strjoin(sShort, sLong);
+		ret = -1;
+		ret = read(fd, buffer->cArray, iBufferSize);
+		if (ret > 0)
+			ret = ft_strchr_gnl(buffer->cArray, '\n');
+		if (ret == 0)
+			line = ft_strjoin_gnl(line, buffer->cArray, iBufferSize);
+		else
+			line = ft_strjoin_gnl(line, buffer->cArray, ret);
 	}
-	ft_strjoin(sShort, sLong);
-	
-	sShort = (char *)malloc(BUFFER_SIZE * sizeof(char));
-	if (!sShort)
-		return (0);
-
-	if (i == BUFFER_SIZE)
-		get_next_line()
-	return (sShort);
+	return (line);
 }

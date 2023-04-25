@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"get_next_line.c": "cpp",
-		"stddef.h": "c",
-		"get_next_line_utils.c": "cpp",
-		"fcntl.h": "c",
-		"get_next_line.h": "c"
-	}
-}

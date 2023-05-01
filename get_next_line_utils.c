@@ -6,27 +6,25 @@
 /*   By: jlozano- <jlozano-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:12:57 by jlozano-          #+#    #+#             */
-/*   Updated: 2023/03/09 20:49:00 by jlozano-         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:35:54 by jlozano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strchr_gnl(const char *s, int c)
+int	strchr_gnl(const char *s, const char c)
 {
 	char	*s_aux;
 
 	s_aux = (char *)s;
-	while (*s_aux != (char)c)
-	{
-		if (*s_aux == '\0')
-			return (0);
+	while (*s_aux != c && *s_aux != '\0')
 		s_aux++;
-	}
-	return ((size_t)(s_aux - s)/sizeof(char));
+	if (*s_aux == c && c != 0)
+		s_aux++;
+	return ((int)(s_aux - s));
 }
 
-static size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -36,33 +34,31 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin_gnl(char *s1, char const *s2, size_t n)
+char	*str_realloc(char *str, size_t size)
 {
-	char	*s3;
-	size_t	len;
-	size_t	i;
-	size_t	j;
+	char	*astr;
 
-	if (!s1 || !s2)
-		return (NULL);
-	len = ft_strlen(s1) + n;
-	s3 = (char *) malloc(sizeof(char) * (len + 1));
-	if (!s3)
-		return (NULL);
-	i = 0;
-	while (s1[i])
+	astr = (char *)malloc(size * sizeof(char));
+	if (str && astr)
 	{
-		s3[i] = s1[i];
-		i++;
+		ft_strncpy(astr, str, size);
+		free(str);
+		str = NULL;
 	}
-	j = 0;
-	while (n)
+	return (astr);
+}
+
+int	ft_strncpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	count;
+
+	count = 0;
+	while (src[count] != 0 && dstsize > count + 1)
 	{
-		s3[i + j] = s2[j];
-		j++;
-		n--;
+		dst[count] = src[count];
+		count++;
 	}
-	free(s1);
-	s3[i + j] = '\0';
-	return (s3);
+	if (dstsize != 0)
+		dst[count] = 0;
+	return (count);
 }
